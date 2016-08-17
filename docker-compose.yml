@@ -1,0 +1,9 @@
+---
+version: "2"
+services:
+  umaine_pin_change_service:
+    build: ./pinchangeserver
+    ports:
+     - "5000:5000"
+    volumes:
+     - ./pinchangeserver:/app
