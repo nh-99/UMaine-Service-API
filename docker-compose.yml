@@ -7,3 +7,18 @@ services:
      - "5000:5000"
     volumes:
      - ./pinchangeserver:/app
+     
+  umaine_user_service:
+    build: ./userserver
+    environment:
+     - "DB_PASSWORD=foobar"
+    ports:
+     - "5001:5001"
+    volumes:
+     - ./userserver:/app
+     
+  mysql:
+    environment:
+      - "MYSQL_ROOT_PASSWORD=foobar"
+      - "MYSQL_DATABASE=wcw_users"
+    image: mysql
