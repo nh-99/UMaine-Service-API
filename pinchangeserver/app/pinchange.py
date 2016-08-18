@@ -1,7 +1,8 @@
 #!flask/bin/python
 from flask import Flask, request, jsonify
 
-from app.utils import umainepinchanger, mailer
+#from app.utils import umainepinchanger, mailer
+from app.utils import umainepinchanger
 
 app = Flask(__name__)
 
@@ -15,7 +16,7 @@ def change_pin():
 	if newPin is not -1 and not -2:
 		toReturn = { "status": "error", "errorCode" : newPin }
 	else:
-		mailer.email_pin_change(username, password, newPin)
+		#mailer.email_pin_change(username, password, newPin)
 		toReturn = { "status": "success", "newPin" : newPin }
 	return jsonify(toReturn)
 
