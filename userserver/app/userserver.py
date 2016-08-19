@@ -79,6 +79,34 @@ def add_service():
         response = {'status':'error','message':'Incorrect username or password'}
             
     return nice_json(response)
+    
+@app.route("/services/get", methods=['POST'])
+def get_service():
+    json_data = request.get_json(force=True)
+    username = json_data['username']
+    password = json_data['password']
+    service_name = json_data['service_name']
+    
+    response = ""
+    if User.query.filter_by(username=username).count():
+        user = User.query.filter_by(username=username).first()
+        if check_password_hash(str(user.password), password):
+            if user.serviceKeys is not None:
+                services = json.loads(user.serviceKeys)
+                for service in services['services']:
+                    print(service['name'])
+                    if service_name == service['name']:
+                        response = {'status':'success','message':'Key found successfully', 'key':service['key']}
+            else:
+				response = {'status':'error','message':'Service not found'}
+        else:
+            response = {'status':'error','message':'Incorrect username or password'}
+    else:
+        response = {'status':'error','message':'Incorrect username or password'}
+    
+    if response is '':
+        response = {'status':'error','message':'Service not found'}
+    return nice_json(response)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5001, debug=True)
