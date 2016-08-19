@@ -16,6 +16,8 @@ services:
      - "5001:5001"
     volumes:
      - ./userserver:/app
+    depends_on:
+     - mysql
      
   mysql:
     environment:
