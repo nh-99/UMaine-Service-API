@@ -12,16 +12,6 @@ app = Flask(__name__)
 CORS(app)
 users.db.create_all()
 
-@app.route("/", methods=['GET'])
-def hello():
-    return nice_json({
-        "uri": "/",
-        "subresource_uris": {
-            "bookings": "/bookings",
-            "booking": "/bookings/<username>"
-        }
-    })
-
 @app.route("/register", methods=['POST'])
 def register():
     json_data = request.get_json(force=True)
@@ -51,6 +41,38 @@ def login():
         user = User.query.filter_by(username=username).first()
         if check_password_hash(str(user.password), password):
             response = {'status':'success','message':'Logged in successfully'}
+        else:
+            response = {'status':'error','message':'Incorrect username or password'}
+    else:
+        response = {'status':'error','message':'Incorrect username or password'}
+            
+    return nice_json(response)
+    
+@app.route("/services/add", methods=['POST'])
+def add_service():
+    json_data = request.get_json(force=True)
+    username = json_data['username']
+    password = json_data['password']
+    service_name = json_data['service_name']
+    service_key = json_data['service_key']
+    
+    response = ""
+    if User.query.filter_by(username=username).count():
+        user = User.query.filter_by(username=username).first()
+        if check_password_hash(str(user.password), password):
+            if user.serviceKeys != None:
+                current_services = json.loads(user.serviceKeys)
+                current_services["services"].append({'name':service_name, 'key':service_key})
+                user.serviceKeys = json.dumps(current_services)
+                users.db.session.add(user)
+                users.db.session.commit()
+            else:
+                current_services = {'services':[]}
+                current_services["services"].append({'name':service_name, 'key':service_key})
+                user.serviceKeys = json.dumps(current_services)
+                users.db.session.add(user)
+                users.db.session.commit()
+            response = {'status':'success','message':'Added service successfully'}
         else:
             response = {'status':'error','message':'Incorrect username or password'}
     else:

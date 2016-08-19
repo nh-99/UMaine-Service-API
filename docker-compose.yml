@@ -20,5 +20,5 @@ services:
   mysql:
     environment:
       - "MYSQL_ROOT_PASSWORD=foobar"
-      - "MYSQL_DATABASE=wcw_users"
+      - "MYSQL_DATABASE=umaine_users"
     image: mysql
