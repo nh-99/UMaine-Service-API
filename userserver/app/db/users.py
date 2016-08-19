@@ -4,8 +4,8 @@ import os
 
 app = Flask(__name__)
 databasePassword = os.environ['DB_PASSWORD']
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:{}@umaine_mysql_service_1/umaine_users'.format(databasePassword)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:{}@localhost/umaine_users'.format(databasePassword)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:{}@umaineserviceapi_mysql_1/umaine_users'.format(databasePassword)
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:{}@localhost/umaine_users'.format(databasePassword)
 db = SQLAlchemy(app)
 
 class User(db.Model):
