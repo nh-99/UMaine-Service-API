@@ -7,5 +7,5 @@ setup(name="umaineapi_pinchangeserver",
       platforms = ["any"],
       license = "BSD",
       packages = find_packages(),
-      install_requires = ["requests", "flask-mysqldb", "jsonify", "mechanize", "beautifulsoup4", "html5lib" ],
+      install_requires = ["requests", "flask-mysqldb", "flask-cors", "jsonify", "mechanize", "beautifulsoup4", "html5lib" ],
       )
