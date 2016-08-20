@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 from app.utils import umainepinchanger
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/pin/change', methods=['POST'])
 def change_pin():
