@@ -1,7 +1,5 @@
-# make sure to pip install beautifulsoup4, mechanze, and pushbullet.py
 import mechanize
 from random import randint
-import re
 
 formId = ""
 def select_form(form):
