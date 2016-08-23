@@ -45,10 +45,13 @@ def get_textbook_prices(isbns):
     for isbn in isbns:
         url = 'https://www.textsurf.com/details/' + str(isbn)
         browser.get(url)
-        
+
+        pricesForBook = []
         for price in browser.find_elements_by_class_name('btn-success'):
             if re.search('\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})', price.text) is not None:
-                toReturn[isbn] = [price.text, price.get_attribute('href')]
+                print(price.text)
+                pricesForBook.append([price.text, price.get_attribute('href')])
+        toReturn[isbn] = pricesForBook
     time.sleep(1)
     browser.close()
     return toReturn

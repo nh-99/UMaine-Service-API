@@ -21,11 +21,12 @@ def get_textbooks():
 def get_prices():
 	json_data = request.get_json(force=True)
 	isbns = json_data['isbns']
+	prices = textbooks.get_textbook_prices(isbns)
 	toReturn = {}
 	if isbns is not -1 and not -2:
 		toReturn = { "status": "error", "errorCode" : isbns }
 	else:
-		toReturn = { "status": "success", "prices" : isbns }
+		toReturn = { "status": "success", "prices" : prices }
 	return jsonify(toReturn)
 
 if __name__ == '__main__':
