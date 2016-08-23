@@ -24,3 +24,10 @@ services:
       - "MYSQL_ROOT_PASSWORD=foobar"
       - "MYSQL_DATABASE=umaine_users"
     image: mysql
+     
+  umaine_mainestreet_server:
+    build: ./mainestreet
+    ports:
+     - "5002:5002"
+    volumes:
+     - ./mainestreet:/app

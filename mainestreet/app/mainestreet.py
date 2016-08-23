@@ -4,7 +4,7 @@ from app.utils import textbooks
 
 app = Flask(__name__)
 
-@app.route('/studentcenter/textbooks', methods=['GET'])
+@app.route('/studentcenter/getisbns', methods=['GET'])
 def get_textbooks():
 	json_data = request.get_json(force=True)
 	username = json_data['username']
@@ -14,9 +14,19 @@ def get_textbooks():
 	if isbns is not -1 and not -2:
 		toReturn = { "status": "error", "errorCode" : isbns }
 	else:
-		#mailer.email_pin_change(username, password, newPin)
 		toReturn = { "status": "success", "isbns" : isbns }
 	return jsonify(toReturn)
 
+@app.route('/studentcenter/getprices', methods=['GET'])
+def get_prices():
+	json_data = request.get_json(force=True)
+	isbns = json_data['isbns']
+	toReturn = {}
+	if isbns is not -1 and not -2:
+		toReturn = { "status": "error", "errorCode" : isbns }
+	else:
+		toReturn = { "status": "success", "prices" : isbns }
+	return jsonify(toReturn)
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5002, debug=True)

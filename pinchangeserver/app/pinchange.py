@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask, request, jsonify
-
+from flask_cors import COR
 #from app.utils import umainepinchanger, mailer
 from app.utils import umainepinchanger
 
