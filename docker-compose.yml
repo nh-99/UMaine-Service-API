@@ -2,11 +2,11 @@
 version: "2"
 services:
   umaine_myhousing_service:
-    build: ./pinchangeserver
+    build: ./myhousing
     ports:
      - "5000:5000"
     volumes:
-     - ./pinchangeserver:/app
+     - ./myhousing:/app
      
   umaine_user_service:
     build: ./userserver
