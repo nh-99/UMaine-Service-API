@@ -11,7 +11,7 @@ def change_pin():
 	json_data = request.get_json(force=True)
 	username = json_data['username']
 	password = json_data['password']
-	newPin = umainepinchanger.get_new_pin(username, password)
+	newPin = pinchanger.get_new_pin(username, password)
 	toReturn = {}
 	if newPin is not -1 and not -2:
 		toReturn = { "status": "error", "errorCode" : newPin }
