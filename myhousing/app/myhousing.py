@@ -22,9 +22,8 @@ def change_pin():
 	
 @app.route('/assignment', methods=['GET'])
 def check_assignment():
-	json_data = request.get_json(force=True)
-	username = json_data['username']
-	password = json_data['password']
+	username = request.args.get('username')
+	password = request.args.get('password')
 	roomAssignment = roomassignment.get_room_info(username, password)
 	toReturn = {}
 	if roomAssignment is not -1 and not -2:
