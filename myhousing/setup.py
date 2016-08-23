@@ -1,8 +1,8 @@
 from setuptools import find_packages, setup
 
-setup(name="umaineapi_pinchangeserver",
+setup(name="umaineapi_myhousingserver",
       version = "0.1",
-      description = "A service for connecting to myHousing using a Maine ID and ",
+      description = "A service for connecting to myHousing using a Maine ID and password",
       author = "Noah Howard",
       platforms = ["any"],
       license = "BSD",

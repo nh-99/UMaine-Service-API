@@ -1,7 +1,7 @@
 ---
 version: "2"
 services:
-  umaine_pin_change_service:
+  umaine_myhousing_service:
     build: ./pinchangeserver
     ports:
      - "5000:5000"
@@ -25,7 +25,7 @@ services:
       - "MYSQL_DATABASE=umaine_users"
     image: mysql
      
-  umaine_mainestreet_server:
+  umaine_mainestreet_service:
     build: ./mainestreet
     ports:
      - "5002:5002"

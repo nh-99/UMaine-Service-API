@@ -3,4 +3,4 @@ ADD . /app/
 WORKDIR /app/
 RUN easy_install flask
 RUN python setup.py install
-CMD python app/pinchange.py
+CMD python app/myhousing.py
