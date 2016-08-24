@@ -27,7 +27,7 @@ def get_room_info(username, password):
     toReturn['assignment']['type'] = roomType[0]['value']
     
     mealPlan = bs.findAll(id='txtMealPlan')
-    toReturn['assignment']['mealPlan'] = roomType[0]['value']
+    toReturn['assignment']['mealPlan'] = mealPlan[0]['value']
     
     address1 = bs.findAll(id='txtCampusAddress1')
     address2 = bs.findAll(id='txtCampusAddress2')
