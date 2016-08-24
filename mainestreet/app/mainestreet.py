@@ -31,7 +31,6 @@ def get_prices():
 	
 @app.route('/studentcenter/messages', methods=['GET'])
 def get_messages():
-	json_data = request.get_json(force=True)
 	username = request.args.get('username')
 	password = request.args.get('password')
 	messages = messagecenter.get_messages_from_mainestreet(username, password)
