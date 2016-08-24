@@ -32,8 +32,8 @@ def get_prices():
 @app.route('/studentcenter/messages', methods=['GET'])
 def get_messages():
 	json_data = request.get_json(force=True)
-	username = json_data['username']
-	password = json_data['password']
+	username = request.args.get('username')
+	password = request.args.get('password')
 	messages = messagecenter.get_messages_from_mainestreet(username, password)
 	toReturn = {}
 	if messages is not -1 and not -2:
