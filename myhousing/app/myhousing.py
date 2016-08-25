@@ -6,6 +6,16 @@ from utils import pinchanger, roomassignment
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/', methods=['GET'])
+def get_endpoints():
+	return nice_json({
+		"uri": "/",
+		"subresource_uris" : {
+			"change_pin": "/pin/change",
+			"room_assignment": "/assignment",
+		}
+	})
+
 @app.route('/pin/change', methods=['POST'])
 def change_pin():
 	json_data = request.get_json(force=True)
