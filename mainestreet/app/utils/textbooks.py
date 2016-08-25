@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 def get_isbns_from_mainestreet(username, password):
-    browser = webdriver.PhantomJS()
+    browser = webdriver.Firefox()
     url = 'https://peportal.maine.edu/psp/PAPRD89/EMPLOYEE/EMPL/h/?tab=PAPP_GUEST'
     browser.get(url)
     time.sleep(2)
@@ -49,9 +49,11 @@ def get_textbook_prices(isbns):
         pricesForBook = []
         for price in browser.find_elements_by_class_name('btn-success'):
             if re.search('\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})', price.text) is not None:
-                print(price.text)
-                pricesForBook.append([price.text, price.get_attribute('href')])
+                name = browser.find_element_by_class_name('result_book_title')
+                pricesForBook.append({"name": name.text, "price": price.text, "url": price.get_attribute('href')})
         toReturn[isbn] = pricesForBook
     time.sleep(1)
     browser.close()
     return toReturn
+
+print(get_textbook_prices(get_isbns_from_mainestreet('noah.howard', '2TEi&5euy')))
