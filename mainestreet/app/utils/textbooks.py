@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 def get_isbns_from_mainestreet(username, password):
-    browser = webdriver.Firefox()
+    browser = webdriver.PhantomJS()
     url = 'https://peportal.maine.edu/psp/PAPRD89/EMPLOYEE/EMPL/h/?tab=PAPP_GUEST'
     browser.get(url)
     time.sleep(2)
@@ -55,5 +55,3 @@ def get_textbook_prices(isbns):
     time.sleep(1)
     browser.close()
     return toReturn
-
-print(get_textbook_prices(get_isbns_from_mainestreet('noah.howard', '2TEi&5euy')))
