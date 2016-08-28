@@ -7,7 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 def get_schedule_from_mainestreet(username, password):
     toReturn = {}
-    browser = webdriver.Firefox()
+    browser = webdriver.PhantomJS()
     url = 'https://peportal.maine.edu/psp/PAPRD89/EMPLOYEE/EMPL/h/?tab=PAPP_GUEST'
     browser.get(url)
     time.sleep(2)
