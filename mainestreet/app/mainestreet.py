@@ -45,12 +45,12 @@ def get_messages():
 def get_schedule():
 	username = request.args.get('username')
 	password = request.args.get('password')
-	schedule = schedule.get_schedule_from_mainestreet(username, password)
+	schedule_object = schedule.get_schedule_from_mainestreet(username, password)
 	toReturn = {}
-	if messages is not -1 and not -2:
-		toReturn = { "status": "error", "errorCode" : schedule }
+	if schedule_object is not -1 and not -2:
+		toReturn = { "status": "error", "errorCode" : schedule_object }
 	else:
-		toReturn = schedule
+		toReturn = schedule_object
 	return jsonify(toReturn)
 
 if __name__ == '__main__':
