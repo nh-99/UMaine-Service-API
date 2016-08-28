@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 
-from utils import textbooks, messagecenter
+from utils import textbooks, messagecenter, schedule
 
 app = Flask(__name__)
 
@@ -39,6 +39,18 @@ def get_messages():
 		toReturn = { "status": "error", "errorCode" : messages }
 	else:
 		toReturn = messages
+	return jsonify(toReturn)
+    
+@app.route('/studentcenter/schedule', methods=['GET'])
+def get_schedule():
+	username = request.args.get('username')
+	password = request.args.get('password')
+	schedule = schedule.get_schedule_from_mainestreet(username, password)
+	toReturn = {}
+	if messages is not -1 and not -2:
+		toReturn = { "status": "error", "errorCode" : schedule }
+	else:
+		toReturn = schedule
 	return jsonify(toReturn)
 
 if __name__ == '__main__':
